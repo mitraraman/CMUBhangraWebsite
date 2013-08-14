@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="SpryAssets/SpryMenuBarHorizontal.css" rel="stylesheet" type="text/css">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link href='http://fonts.googleapis.com/css?family=Playfair+Display:700italic' rel='stylesheet' type='text/css'>
+<style type="text/css">
+#apDiv1 {
+	position: absolute;
+	left: 181px;
+	top: 212px;
+	width: 626px;
+	height: 419px;
+	z-index: 1;
+}
+</style>
+<title>CMU Bhangra</title>
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/jquery.slides.min.js"></script>
+
+<script>
+$(function() {
+	$('#slideshow img:gt(0)').hide();
+	setInterval(function() {
+		$('#slideshow :first-child').fadeOut()
+			.next('img').fadeIn()
+			.end().appendTo('#slideshow');},
+		3000);
+});
+
+$(document).ready(function () {     
+     
+// Type in your twitter id here
+     
+var user = 'CMUBhangra';
+           
+// How many Tweets do you want to display?
+//Type in the number after &count=
+// Do you wanna show RT's? include_rts= '0 for no' or '1 for yes'
+  
+    $.getJSON('http://api.twitter.com/1/statuses/user_timeline.json?screen_name=' + user + '&count=3&include_rts=1&callback=?', function(data)      {
+           
+        var tweet = "";
+for (i = 0; i < data.length; i++) {
+tweet += data[i].text + "</br></br>";
+}
+       
+        tweet = tweet.replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig, function(url) {
+            return '<a target="_blank" href="'+url+'">'+url+'</a>';
+        }).replace(/B@([_a-z0-9]+)/ig, function(reply) {
+            return  reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'">'+reply.substring(1)+'</a>';
+        });
+       
+// Give your tweets a home: here an element of id tweet (#tweet)
+         
+$("#tweet").html(tweet);
+    });
+});
+</script>  
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo">
+        <p><a href="index.html"><img src="images/logo.png" width="100" height="100"></a></p>
+      </div>
+            <div id="nav"> 
+        <ul id="navbar" class="MenuBarHorizontal">
+          <li><a href="index.html" id="selected">Home</a>          </li>
+          <li><a href="#" class="MenuBarItemSubmenu">The Team</a>
+            <ul>
+              <li><a href="history.html">History</a></li>
+              <li><a href="highlights.html">Highlights</a></li>
+              <li><a href="#" class="MenuBarItemSubmenu">Current Members</a>
+                <ul>
+                  <li><a href="competitive.html">Competitive Team</a></li>
+                  <li><a href="campus.html">Campus Team</a></li>
+                </ul>
+              </li>
+              <li><a href="alumni.html">Alumni</a></li>
+            </ul>
+          </li>
+          <li><a class="MenuBarItemSubmenu" href="#">Services</a>
+            <ul>
+              <li><a href="gig-requests.html">Performances</a>              </li>
+              <li><a href="rentals.html">Rentals</a></li>
+</ul>
+          </li>
+          <li><a class="MenuBarItemSubmenu" href="#">Media</a>
+          	<ul>
+            	<li><a href="photos.html">Photos</a></li>
+                <li><a href="#" class="MenuBarItemSubmenu">Videos</a>
+                	<ul>
+                    	<li><a href="comps.html">Competitions</a></li>
+                        <li><a href="publicvids.html">Public Shows</a></li>
+                        <li><a href="gigs.html">Gigs</a></li>
+                        <li><a href="oldvids.html">Old Performances</a></li>
+                    </ul>
+                </li>
+                <li><a href="mixes.html">Mixes</a></li>
+             </ul>
+            </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    <img src="images/name.png" width="660" height="90" alt="Carnegie Mellon Bhangra" id="name">
+    </div>
+    
+  <div id="main-content">
+
+  <div id="slideshow">
+	<img src="images/pic1.png" class="slideshow-pic">
+	<img src="images/pic2.png" class="slideshow-pic">
+	<img src="images/pic4.png" class="slideshowpic">
+	<img src="images/pic5.png" class="slideshowpic">
+	<img src="images/pic6.png" class="slideshowpic">
+    <img src="images/pic7.png" class="slideshowpic">
+    <img src="images/pic8.png" class="slideshowpic">
+  </div>
+  
+  <div class="twitter-block">
+  	<div id="twitter-img"><a href="https://twitter.com/cmubhangra"><img src="images/tweets-logo.png"></a></div><br />
+  	<div id="tweet">
+  	</div>
+   </div>
+  </div>
+    
+  <div id="footer">
+  	<div id="mission-statement">
+    	<h2>Mission Statement</h2>
+        <p>The purpose of CMU Bhangra is to provide opportunity and instruction for aspiring dancers. We seek to encourage, advance, and promote the art of Bhangra dancing (Punjabi folk dance) through various performances and competitions, on and off campus, and through instructive workshops.</p>
+    </div>
+  	<div id="social-buttons">
+    	<ul>
+        	<li><a href="https://www.twitter.com/cmubhangra"><img src="images/twitternew.png"></a></li>
+            <li><a href="https://www.facebook.com/CMUBhangra?ref=hl"><img src="images/fbnew.png"></a></li>
+            <li><a href="http://www.youtube.com/user/CMUBhangra"><img src="images/youtubenew.png"></a></li>
+        </ul>
+    </div>
+    
+  </div>
+  </div>
+
+<script type="text/javascript">
+var MenuBar1 = new Spry.Widget.MenuBar("navbar", {imgDown:"SpryAssets/SpryMenuBarDownHover.gif", imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+    </script>
+</body>
+</html>
